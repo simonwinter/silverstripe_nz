@@ -5,6 +5,8 @@ MAINTAINER Simon Winter
 RUN apt-get update \
   && apt-get install -y php5-sqlite \
   && apt-get install -y php5-imagick \
+  && apt-get install jpegoptim \
+  && apt-get install optipng \
   && cp /etc/php5/apache2/php.ini /etc/php5/apache2/php.ini.tmp \
   && sed '$ d' /etc/php5/apache2/php.ini.tmp > /etc/php5/apache2/php.ini \
   && rm -f /etc/php5/apache2/php.ini.tmp \
