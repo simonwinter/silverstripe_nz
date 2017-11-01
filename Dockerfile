@@ -70,7 +70,7 @@
   RUN  if ! [ -d /var/www/public ]; then mkdir /var/www/public; fi
 
   # Install node apps
-  RUN npm install -g grunt-cli gulp bower coffee-script
+  RUN npm install -g grunt-cli gulp bower yarn npm
 
   ####
   ## Commands and ports
