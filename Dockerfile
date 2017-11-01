@@ -65,7 +65,6 @@
 
   ADD startup /usr/local/bin/startup
   ADD apache-default-vhost /etc/apache2/sites-available/000-default.conf
-  ADD _ss_environment.php /var/_ss_environment.php
   
   # add public dir 
   RUN  if ! [ -d /var/www/public ]; then mkdir /var/www/public; fi
