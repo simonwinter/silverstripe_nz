@@ -1,0 +1,25 @@
+#!/bin/bash  
+
+# Startup script for environment setup and apache start.
+# Author: Andy Smith MMK Digital
+# cloned from https://github.com/4j5/silverstripe-lamp/blob/master/startup
+
+export TERM=dumb
+echo "Starting MySQL..."
+/etc/init.d/mysql start
+sleep 5
+
+# Setup db for project.
+if [ -e utils/db.sql ]; then 
+    mysql -uroot < utils/db.sql;
+fi
+
+echo "Running dev/build..."
+cd /var/www
+sudo -u www-data ./public/framework/sake dev/build
+
+echo "Starting apache..."
+apache2ctl start
+
+echo "Showing access.log..."
+tail -f /var/log/apache2/access.log
