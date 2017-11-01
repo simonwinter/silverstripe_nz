@@ -69,8 +69,12 @@
   # add public dir 
   RUN  if ! [ -d /var/www/public ]; then mkdir /var/www/public; fi
 
+  # update node
+  RUN curl -sL https://deb.nodesource.com/setup_8.x | bash - && \
+      apt-get install -y nodejs
+
   # Install node apps
-  RUN npm install -g grunt-cli gulp bower yarn npm
+  RUN npm install -g grunt-cli gulp bower npm
 
   ####
   ## Commands and ports
