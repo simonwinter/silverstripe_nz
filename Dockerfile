@@ -39,7 +39,7 @@
   RUN apt-get -yqq install apache2 \
     php7.0-sqlite3 php7.0-imagick \
       php7.0-cli libapache2-mod-php7.0 php7.0-mysql php7.0-mcrypt php7.0-tidy php7.0-curl \
-      php7.0-gd php7.0-xml php-pear \
+      php7.0-gd php7.0-xml php7.0-mbstring php-pear \
     jpegoptim optipng &&\
       apt-get clean
 
