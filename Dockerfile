@@ -43,6 +43,8 @@
       jpegoptim optipng && \
       apt-get clean
 
+  RUN a2enmod headers
+
   #  - Phpunit, Composer, Phing
   RUN wget https://phar.phpunit.de/phpunit.phar && \
       chmod +x phpunit.phar && \
