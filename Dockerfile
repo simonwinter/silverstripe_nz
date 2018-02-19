@@ -43,6 +43,8 @@
       jpegoptim optipng && \
       apt-get clean
 
+  RUN a2enmod headers
+
   #  - Phpunit, Composer, Phing
   RUN wget https://phar.phpunit.de/phpunit.phar && \
       chmod +x phpunit.phar && \
@@ -52,7 +54,7 @@
       mv composer.phar /usr/local/bin/composer && \
       pear channel-discover pear.phing.info && \
       pear install phing/phing
-    
+  
   # add codesniffer
   RUN composer global require "squizlabs/php_codesniffer=*"
 
