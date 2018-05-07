@@ -54,9 +54,14 @@
       mv composer.phar /usr/local/bin/composer && \
       pear channel-discover pear.phing.info && \
       pear install phing/phing
+      
+  RUN composer self-update
     
   # add codesniffer
   RUN composer global require "squizlabs/php_codesniffer=*"
+  
+  # add silverstripe 4 upgrader
+  RUN composer global require "silverstripe/upgrader"
 
   # SilverStripe Apache Configuration
   RUN rm /etc/apache2/sites-available/000-default.conf
