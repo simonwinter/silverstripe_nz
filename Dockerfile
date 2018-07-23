@@ -13,3 +13,6 @@ RUN apt-get update \
   && echo "date.timezone = Pacific/Auckland" >> /etc/php5/apache2/php.ini \
   && if ! [ -d /var/www/public ]; then mkdir /var/www/public; fi \
   && apache2ctl restart
+
+# update composer
+RUN composer self-update
