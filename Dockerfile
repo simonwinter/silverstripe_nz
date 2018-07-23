@@ -94,3 +94,6 @@
   CMD ["/usr/local/bin/startup"]
 
   ENV LANG en_GB.UTF-8
+  
+  # update composer
+  RUN composer self-update
