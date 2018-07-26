@@ -35,13 +35,22 @@
     rm dotdeb.gpg && \
     apt-get update
 
+  # Add all php7+ releases to apt
+  RUN apt install apt-transport-https lsb-release ca-certificates && \
+    wget -O /etc/apt/trusted.gpg.d/php.gpg https://packages.sury.org/php/apt.gpg && \
+    sh -c 'echo "deb https://packages.sury.org/php/ $(lsb_release -sc) main" > /etc/apt/sources.list.d/php.list' && \
+    apt update
+
   # APACHE, PHP & SUPPORT TOOLS
   RUN apt-get -yqq install apache2 \
-    php7.0-sqlite3 php7.0-imagick \
-      php7.0-cli libapache2-mod-php7.0 php7.0-mysql php7.0-mcrypt php7.0-tidy php7.0-curl \
-      php7.0-gd php7.0-xml php7.0-mbstring zip unzip php7.0-zip php7.0-intl php-pear \
-      jpegoptim optipng && \
-      apt-get clean
+    php7.1 php7.1-common \
+    php7.1-sqlite3 php7.0-imagick \
+    php7.1-cli libapache2-mod-php7.1 php7.1-mysql php7.1-mcrypt php7.1-tidy php7.1-curl \
+    php7.1-gd php7.1-xml php7.1-mbstring zip unzip php7.1-zip php7.1-intl php-pear \
+    jpegoptim optipng && \
+    apt-get clean
+    
+  RUN apt-get purge php7.0 php7.0-common
 
   RUN a2enmod headers
 
@@ -68,7 +77,7 @@
   RUN a2enmod rewrite && \
       if [ -f /var/www/index.html]; then rm /var/www/index.html; fi
 
-  RUN echo "date.timezone = Pacific/Auckland" >> /etc/php/7.0/apache2/php.ini
+  RUN echo "date.timezone = Pacific/Auckland" >> /etc/php/7.1/apache2/php.ini
 
   ADD startup /usr/local/bin/startup
   ADD apache-default-vhost /etc/apache2/sites-available/000-default.conf
