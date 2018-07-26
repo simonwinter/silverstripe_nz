@@ -50,7 +50,7 @@
     jpegoptim optipng && \
     apt-get clean
     
-  RUN apt-get purge php7.0 php7.0-common
+  RUN apt-get purge -y php7.0 php7.0-common
 
   RUN a2enmod headers
 
