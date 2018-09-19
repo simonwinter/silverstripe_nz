@@ -106,3 +106,6 @@
   
   # update composer
   RUN composer self-update
+  
+  # install cron
+  RUN apt-get install -y cron
